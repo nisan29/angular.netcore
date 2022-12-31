@@ -11,7 +11,7 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class NavComponent implements OnInit {
   model: any = {};
-  currentUser$: Observable<IUser>;
+  currentUser$: Observable<IUser | null> | undefined;
 
   constructor(
     private accountService: AccountService,
@@ -23,7 +23,7 @@ export class NavComponent implements OnInit {
   }
 
   login() {
-    this.accountService.login("account/login", this.model).subscribe(res => {
+    this.accountService.login("account/login", this.model).subscribe(_ => {
       this.router.navigateByUrl('/members');
     })
   }

@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IUser } from 'src/app/models/user';
-import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +7,10 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class HomeComponent implements OnInit {
   registerMode = false;
-  users$: Observable<IUser>;
 
-  constructor(private usersService: UsersService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.users$ = this.usersService.getUsers();
   }
 
   registerToggle() {

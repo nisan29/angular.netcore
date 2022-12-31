@@ -10,7 +10,7 @@ import { AccountService } from './services/account.service';
 })
 export class AppComponent implements OnInit {
   title = 'client';
-  users: Observable<IUser>;
+  users: Observable<IUser | null> | undefined;
 
   constructor(
     private accountService: AccountService) { }
@@ -20,9 +20,9 @@ export class AppComponent implements OnInit {
   }
 
   setCurrentUser() {
-    const user: IUser = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-      this.accountService.setCurrentUser(user);
-    }
+    const userString = localStorage.getItem('user');
+    if (!userString) return;
+    const user = JSON.parse(userString);
+    this.accountService.setCurrentUser(user);
   }
 }
